@@ -4,9 +4,10 @@
 
 var debug= require('debug')('registration');
 var mongoose = require('mongoose')
-    , User = mongoose.model('user')
+    , User = mongoose.model('users')
     ,_ = require('underscore')
-    , localmail = require('../mailer/local.mailer');
+    , localmail = require('../mailer/local.mailer')
+    , code = require('../config/code');
 
 var shortid = require('shortid');
 var sha1 = require('sha1');
@@ -30,7 +31,7 @@ var saveAccount= function(new_account,res)
         if(error)
         {
             debug("registration-end-error",error);
-            res.status(400).json(error);
+            res.status(500).json(code[500]);
         }else
         {
             var actLink= process.env.web_url+'confirm/'+success._id;
@@ -43,7 +44,7 @@ var saveAccount= function(new_account,res)
                 function(reject)
                 {
                     debug("registration-end-error-after-mail",reject);
-                    res.status(400).json(reject);
+                    res.status(400).json(code[400]);
                 }
             )
 
@@ -69,7 +70,7 @@ module.exports.confirm=function (req, res, next)
     {
         if(err){
             debug("confirm-end-error",err);
-            res.status(400).json(err);
+            res.status(500).json(code[500]);
         }else
         {
             if(doc.enabled==true)
@@ -106,7 +107,7 @@ module.exports.forgot=function (req, res, next)
         if(err)
         {
             debug("forgot-findOne-end-error",err);
-            res.status(400).json(err);
+            res.status(500).json(code[500]);
         }else
         {
 
@@ -127,7 +128,7 @@ module.exports.forgot=function (req, res, next)
                         function(reject)
                         {
                             debug("forgot-findOne-end-no-enable-error",reject);
-                            res.status(400).json(reject);
+                            res.status(400).json(code[400]);
                         }
                     )
 
@@ -139,7 +140,7 @@ module.exports.forgot=function (req, res, next)
                         if(err)
                         {
                             debug("forgot-findOneAndUpdate-end-error",err);
-                            res.status(400).json(err);
+                            res.status(500).json(code[500]);
                         }else
                         {
                             localmail.sendAccountMail(doc2).then(
@@ -151,18 +152,16 @@ module.exports.forgot=function (req, res, next)
                                 function(reject)
                                 {
                                     debug("forgot-end-error-after-mail",reject);
-                                    res.status(400).json(err);
+                                    res.status(400).json(code[400]);
                                 }
                             )
 
                         }
                     });
-
-
                 }
 
             }else
-                res.status(200).json(true);
+                res.status(200).json(code[200]);
 
         }
 

@@ -4,11 +4,12 @@
 
 var registration= require('../registration/registration');
 var debug= require('debug')('passport.route');
+var code= require('../config/code');
 
 module.exports = function(app,passport)
 {
 
-    app.post('/api/v1/login', function(req, res, next)
+    app.post('/login', function(req, res, next)
     {
         passport.authenticate('local', function(err, user, info)
         {
@@ -19,7 +20,9 @@ module.exports = function(app,passport)
 
             if (!user) {
                 debug("login-user-not-found")
-                return res.status(401).json({error:"User not found"});
+                return res.status(404).json(code[404]);
+
+
             }
 
             req.logIn(user, function(err) {
@@ -42,7 +45,7 @@ module.exports = function(app,passport)
         })(req, res, next);
     });
 
-    app.get('/api/v1/logout', function(req, res)
+    app.get('/logout', function(req, res)
     {
         debug("logout-user");
         req.logOut();
@@ -50,25 +53,25 @@ module.exports = function(app,passport)
         res.clearCookie('connect.sid');
         req.logout();
         req.session=null;
-        res.status(200).json({logout:true});
+        res.status(200).json(code[200]);
     });
 
-    app.get('/api/v1/check',function(req,res)
+    app.get('/check',function(req,res)
     {
         if (!req.isAuthenticated || !req.isAuthenticated()) {
             debug("check - not auth")
-            res.status(401).send({code:4016})
+            res.status(401).send(code[401])
         } else {
             debug("check - auth ok")
-            res.status(200).send({code:2004})
+            res.status(200).send(code[200])
         }
     });
 
-    app.post('/api/v1/registration', registration.registration);
+    app.post('/registration', registration.registration);
 
-    app.get('/api/v1/confirm/:id', registration.confirm);
+    app.get('/confirm/:id', registration.confirm);
 
-    app.post('/api/v1/forgot', registration.forgot);
+    app.post('/forgot', registration.forgot);
 
 
 };

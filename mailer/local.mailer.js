@@ -5,11 +5,14 @@ var nodemailer = require('nodemailer');
 var mongoose = require('mongoose')
 var debug=require('debug')('local.mailer')
 var configMail= {
-    host: 'smtps.aruba.it',
-    port: 465,
+    host: 'mail.itsapp.it',
+    port: 587,
     auth: {
-        user: "iscrizione@example.it",
-        pass: "@#example@#"
+        user: "itsapp.it",
+        pass: "Rossellina2017"
+    },
+    tls: {
+        rejectUnauthorized: false
     }};
 
 
@@ -19,7 +22,7 @@ module.exports.sendRegistrationMail= function(to,link)
     var transporter = nodemailer.createTransport(configMail);
     // setup email data with unicode symbols
     var mailOptions = {
-        from: 'iscrizione@example.it', // sender address
+        from: 'info@itsapp.it', // sender address
         to: to,
         subject: 'Conferma Account ', // Subject line
         text: 'Salve', // plain text body
@@ -38,7 +41,7 @@ module.exports.sendAccountMail= function(account)
 
     // setup email data with unicode symbols
     var mailOptions = {
-        from: 'iscrizione@example.it', // sender address
+        from: 'info@itsapp.it', // sender address
         to: account.username,
         subject: 'Benvenuto in example', // Subject line
         text: 'Salve', // plain text body

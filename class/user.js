@@ -22,7 +22,7 @@ function generatePassword()
 var pass_salt= generatePassword();
 
 
-var  account = new Schema({
+var  user = new Schema({
     username: { type: String, lowercase: true, trim: true, required: true, unique: true },
     token: { type: String },
     password: { type: String, default:pass_salt.password },
@@ -33,5 +33,5 @@ var  account = new Schema({
 });
 
 
-mongoose.model('accounts', account);
-module.exports = account;
+mongoose.model('users', user);
+module.exports = user;
