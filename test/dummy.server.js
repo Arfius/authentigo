@@ -7,16 +7,22 @@ const restify = require('express-restify-mongoose')
 const app = express()
 const router = express.Router()
 var session = require('express-session')
-
+var debug = require('debug')('DummyServer')
 // load models
-require('../index.js').init(app,router);
+
+var authsetting= require('./authentigo.json')
+
+debug('DUMMY SERVER AuthentiGo')
+
+var authentigo=require('../index.js');
+console.log(authentigo)
+authentigo.settings(authsetting)
+authentigo.init(app,router);
 
 // configure middleware
-var url="http://localhost:3210"
-var url_prefix="/api/v1/"
+var port=3210
 
-process.env.url_address=url;
-process.env.web_url=url+url_prefix;
+
 process.env.public_path=__dirname + '/public/';
 
 app.use(express.static(process.env.public_path));
@@ -32,11 +38,11 @@ app.all('*', function(req, res, next) {
 
 
 app.use(router);
-var server = app.listen(3210, function ()
+var server = app.listen(port, function ()
 {
-    var host = server.address().address;
-    var port = server.address().port;
-    console.log('Dummy Server Listening at http://localhost:3210');
+    var _host = server.address().address;
+    var _port = server.address().port;
+    debug("Listening->"+_host+"@"+_port);
 });
 
 

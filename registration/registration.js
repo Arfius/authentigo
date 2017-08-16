@@ -2,7 +2,7 @@
  * Created by alfonso on 27/04/17.
  */
 
-var debug= require('debug')('registration');
+var debug= require('debug')('Authentigo:registration');
 var mongoose = require('mongoose')
     , User = mongoose.model('users')
     ,_ = require('underscore')
@@ -34,7 +34,7 @@ var saveAccount= function(new_account,res)
             res.status(500).json(code[500]);
         }else
         {
-            var actLink= process.env.web_url+'confirm/'+success._id;
+            var actLink= process.env.authentigo_web_url+'confirm/'+success._id;
             localmail.sendRegistrationMail(success.username,actLink).then(
                 function(resolve)
                 {

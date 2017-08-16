@@ -5,7 +5,7 @@ var mongoose = require('mongoose')
     , LocalStrategy = require('passport-local').Strategy,
     user = mongoose.model('users');
     var sha1 = require('sha1');
-    var debug= require('debug')('passport.local.config')
+    var debug= require('debug')('Authentigo:passport.local.config')
 
 module.exports = function (passport)
 {

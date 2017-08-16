@@ -13,7 +13,7 @@ var   chai = require('chai')
 
 var User=  require('mongoose').model('users');
 
-var url= "http://localhost:3210/"
+var url= "http://localhost:3210/api/v1/"
 describe("[Test Registrazione / Login Utenti]", function()
 {
 
@@ -38,7 +38,7 @@ describe("[Test Registrazione / Login Utenti]", function()
          var account =
          {
             username: 'user@prova.it',
-            password: 'HJTQTqb$#',
+            password: 'rk3mFgfd#',
          };
 
          request(url)

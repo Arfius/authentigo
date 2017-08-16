@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var  user = mongoose.model('users');
 var _ = require('underscore');
 var sha1= require('sha1');
-var debug = require('debug')('config')
+var debug = require('debug')('Authentigo:config')
 
 module.exports = function(restifyconfig)
 {

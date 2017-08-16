@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const cookieParser = require('cookie-parser');
 var session = require('express-session')
-var debug= require('debug')('passport.config');
+var debug= require('debug')('Authentigo:passport.config');
 
 module.exports=function(app)
 {

@@ -3,13 +3,12 @@
  */
 
 var registration= require('../registration/registration');
-var debug= require('debug')('passport.route');
+var debug= require('debug')('Authentigo:passport.route');
 var code= require('../config/code');
 
 module.exports = function(app,passport)
 {
-
-    app.post('/login', function(req, res, next)
+    app.post(process.env.authentigo_url_prefix+'/login', function(req, res, next)
     {
         passport.authenticate('local', function(err, user, info)
         {
@@ -21,8 +20,6 @@ module.exports = function(app,passport)
             if (!user) {
                 debug("login-user-not-found")
                 return res.status(404).json(code[404]);
-
-
             }
 
             req.logIn(user, function(err) {
@@ -45,7 +42,7 @@ module.exports = function(app,passport)
         })(req, res, next);
     });
 
-    app.get('/logout', function(req, res)
+    app.get(process.env.authentigo_url_prefix+'/logout', function(req, res)
     {
         debug("logout-user");
         req.logOut();
@@ -56,7 +53,7 @@ module.exports = function(app,passport)
         res.status(200).json(code[200]);
     });
 
-    app.get('/check',function(req,res)
+    app.get(process.env.authentigo_url_prefix+'/check',function(req,res)
     {
         if (!req.isAuthenticated || !req.isAuthenticated()) {
             debug("check - not auth")
@@ -67,11 +64,11 @@ module.exports = function(app,passport)
         }
     });
 
-    app.post('/registration', registration.registration);
+    app.post(process.env.authentigo_url_prefix+'/registration', registration.registration);
 
-    app.get('/confirm/:id', registration.confirm);
+    app.get(process.env.authentigo_url_prefix+'/confirm/:id', registration.confirm);
 
-    app.post('/forgot', registration.forgot);
+    app.post(process.env.authentigo_url_prefix+'/forgot', registration.forgot);
 
 
 };

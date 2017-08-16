@@ -1,6 +1,6 @@
 
 var mongoose = require('mongoose');
-var debug= require('debug')('mongoconfig');
+var debug= require('debug')('Authentigo:mongoconfig');
 require('../class/user.js');
 
 var env = process.env.NODE_ENV

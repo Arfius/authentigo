@@ -1,0 +1,22 @@
+{
+  "mailer":
+  {
+    "host": "mail.itsapp.it",
+    "port": 587,
+    "auth": {
+      "user": "itsapp.it",
+      "pass": "Rossellina2017"
+    },
+    "tls": {
+      "rejectUnauthorized": false
+    }
+  },
+  "url":
+  {
+    "url":"http://localhost",
+    "port":3210,
+    "url_prefix":"/api/v1"
+  }
+
+}
+

@@ -1,11 +1,12 @@
 {
   "name": "authentigo",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Classic All-in-One authentication manager: registration, authentication, forgot password, mail confirmation ",
   "main": "index.js",
   "scripts": {
-    "test": "DEBUG=*,-not_this npm run test-unit",
-    "test-unit": "NODE_ENV=test mocha"
+    "test": "DEBUG=* npm run test-unit",
+    "test-unit": "NODE_ENV=test mocha",
+    "dummy":"DEBUG=* node test/dummy.server.js"
   },
   "keywords": [
     "registration",
@@ -19,6 +20,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "config": "^1.26.2",
     "cookie-parser": "^1.4.3",
     "debug": "^3.0.0",
     "express": "^4.15.4",
