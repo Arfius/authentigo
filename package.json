@@ -1,6 +1,6 @@
 {
   "name": "authentigo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Classic All-in-One authentication manager: registration, authentication, forgot password, mail confirmation ",
   "main": "index.js",
   "scripts": {

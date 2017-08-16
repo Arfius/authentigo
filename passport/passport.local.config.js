@@ -36,6 +36,8 @@ module.exports = function (passport)
                 return done(null, false, { message: 'error login.' });
             }
 
+            debug("Authentication:"+username+" "+password )
+
             if(username==user.username && sha1(password) == user.password)
             {
                 debug('findOne with user found' )
