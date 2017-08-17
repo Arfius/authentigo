@@ -1,5 +1,5 @@
 # AuthentiGo
-AuthentiGo is a software package that implements the procedure for registration and authentication for a Nodejs web app. AuthentiGo wraps several packages and it is based on the web application framework [**express**](https://expressjs.com) and [**MongoDB**](http://www.mongodb.com). [**Passport-js**](http://www.passportjs.org) is used as authentication manager with **LocalStrategy**, wherease as email manager [**node-mailer**](http://www.nodemailer.com) is used.
+AuthentiGo is a software package that implements the procedure for registration and authentication for a Nodejs web app. AuthentiGo wraps several packages and it is based on the web application framework [**express**](https://expressjs.com) and [**MongoDB**](http://www.mongodb.com). [**Passport-js**](http://www.passportjs.org) is used as authentication manager with **LocalStrategy**, wherease, as email manager, [**node-mailer**](http://www.nodemailer.com) is used.
 
 AuthentiGo needs the email address of the user to start the registration procedure. After receiving the email, AuthentiGo creates a disabled account and send back the confirmation link via email for enabling. 
 
@@ -17,7 +17,7 @@ Using AuthentiGo, you have an all-in-one mechanism for :
 ## Installation
 
 ```sh
-npm install https://github.com/Arfius/paypal-fast-checkout.git --save
+npm install https://github.com/Arfius/authentigo.git --save
 ```
 
 ## Get Started
