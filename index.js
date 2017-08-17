@@ -28,6 +28,6 @@ exports.settings = function(settings)
     process.env.authentigo_port=settings.url.port;
     process.env.authentigo_url_address=settings.url.url;
     process.env.authentigo_web_url=settings.url.url+":"+settings.url.port+settings.url.url_prefix;
-    process.env.authentigo_success_page=page.success_page;
-    process.env.authentigo_failure_page=page.failure_page;
+    process.env.authentigo_success_page=settings.page.success_page;
+    process.env.authentigo_failure_page=settings.page.failure_page;
 }
