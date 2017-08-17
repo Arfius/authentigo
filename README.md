@@ -124,6 +124,10 @@ node test/dummy.server.js
 ```sh
 npm test
 ```
+- [x] Login
+- [x] Login with Error
+- [x] User Registration
+- [ ] User Confirm
 
 
  

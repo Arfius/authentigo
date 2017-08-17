@@ -1,7 +1,7 @@
 {
   "name": "authentigo",
-  "version": "1.2.1",
-  "description": "Classic All-in-One authentication manager: registration, authentication, forgot password, mail confirmation ",
+  "version": "1.2.2",
+  "description": "AuthentiGo is a software package that implements the procedure for registration and authentication for a Nodejs web app.",
   "main": "index.js",
   "scripts": {
     "test": "DEBUG=* npm run test-unit",
@@ -14,7 +14,7 @@
     "forgot",
     "password",
     "mail",
-    "passengerjs"
+    "passportjs"
   ],
   "author": "Alfonso Farruggia",
   "license": "ISC",
