@@ -16,6 +16,11 @@
     "url":"http://localhost",
     "port":3210,
     "url_prefix":"/api/v1"
+  },
+  "page":
+  {
+    "success_page":"http://localhost:3210/success_page",
+    "failure_page":"http://www.failure.ocm/page"
   }
 
 }

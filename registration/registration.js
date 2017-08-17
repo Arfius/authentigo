@@ -39,7 +39,7 @@ var saveAccount= function(new_account,res)
                 function(resolve)
                 {
                     debug("registration-end-success");
-                    res.status(200).json(success);
+                    res.status(200).json(code[200]);
                 },
                 function(reject)
                 {
@@ -83,12 +83,12 @@ module.exports.confirm=function (req, res, next)
                     function(resolve)
                     {
                         debug("confirm-end-succes");
-                        res.redirect(process.env.url_address+'/#!/userenabled');
+                        res.redirect(process.env.authentigo_success_page);
                     },
                     function(reject)
                     {
                         debug("registration-end-error-after-mail",reject);
-                        res.redirect(process.env.url_address+'/#!/error');
+                        res.redirect(process.env.authentigo_failure_page);
                     }
                 )
             }
@@ -123,7 +123,7 @@ module.exports.forgot=function (req, res, next)
                         function(resolve)
                         {
                             debug("forgot-findOne-end-no-enable-success",resolve);
-                            res.status(200).json(resolve);
+                            res.status(200).json(code[200]);
                         },
                         function(reject)
                         {
@@ -147,7 +147,7 @@ module.exports.forgot=function (req, res, next)
                                 function(resolve)
                                 {
                                     debug("forgot-end-succes-after-mail");
-                                    res.status(200).json(true);
+                                    res.status(200).json(code[200]);
                                 },
                                 function(reject)
                                 {
