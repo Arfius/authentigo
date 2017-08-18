@@ -34,7 +34,7 @@ var saveAccount= function(new_account,res)
             res.status(500).json(code[500]);
         }else
         {
-            var actLink= process.env.authentigo_web_url+'confirm/'+success._id;
+            var actLink= process.env.authentigo_web_url+'/confirm/'+success._id;
             localmail.sendRegistrationMail(success.username,actLink).then(
                 function(resolve)
                 {
@@ -76,7 +76,7 @@ module.exports.confirm=function (req, res, next)
             if(doc.enabled==true)
             {
                 debug("confirmed-end-succes");
-                res.redirect(process.env.url_address+'/#!/userenabled');
+                res.redirect(process.env.authentigo_success_page);
             }else
             {
                 localmail.sendAccountMail(doc).then(
@@ -117,7 +117,7 @@ module.exports.forgot=function (req, res, next)
                 {
                     debug("forgot-findOne-end-no-enable",req.body.username);
 
-                    var actLink= process.env.web_url+'confirm/'+doc._id;
+                    var actLink= process.env.authentigo_web_url+'/confirm/'+doc._id;
 
                     localmail.sendRegistrationMail(doc.username,actLink).then(
                         function(resolve)
