@@ -47,7 +47,7 @@ module.exports.sendAccountMail= function(account)
         subject: 'Benvenuto in example', // Subject line
         text: 'Salve', // plain text body
         html: '<b>Salve, </br> il suo account è il seguente <br/> username: '+ account.username+'<br/> password: '+ account.salt+
-        '<br/>Lo Staff di Alternativa Popolare</b>'+'<br/><a href="'+process.env.authentigo_url_address+'">Clicca qui per accedere al portale</a>'
+        '<br/>Lo Staff</b>'+'<br/><a href="'+process.env.authentigo_url_address+'">Clicca qui per accedere al portale</a>'
 // html body
     };
 
