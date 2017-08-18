@@ -27,6 +27,7 @@ var  user = new Schema({
     token: { type: String },
     password: { type: String, default:pass_salt.password },
     salt: { type: String ,  default:pass_salt.salt },
+    role: { type: String,  enum: ['admin','master','slave'], default:"master", require:true },
     deleted: { type: Boolean,default:false },
     enabled: { type: Boolean, default:false},
     created: { type: Date, default:Date.now},
