@@ -21,6 +21,10 @@
   {
     "success_page":"http://localhost:3210/success_page",
     "failure_page":"http://www.failure.ocm/page"
+  },
+  "use":
+  {
+    "role":"true"
   }
 
 }

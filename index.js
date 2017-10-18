@@ -5,7 +5,7 @@ var config = require('config');
 var _ = require('underscore');
 var debug = require('debug')('Authentigo:');
 
-exports.init = function(app,router)
+exports.init = function(app,router,listModels)
 {
 
     if(_.isUndefined(process.env.authentigo))
@@ -17,6 +17,8 @@ exports.init = function(app,router)
         require('./mongoose/mongoconfig');
         require('./passport/passport.config')(app);
         require('./config/config')(router);
+        require('./restify/role')(router,listModels)
+
     }
 }
 
@@ -30,4 +32,5 @@ exports.settings = function(settings)
     process.env.authentigo_web_url=settings.url.url+":"+settings.url.port+settings.url.url_prefix;
     process.env.authentigo_success_page=settings.page.success_page;
     process.env.authentigo_failure_page=settings.page.failure_page;
+    process.env.use_role=settings.use.role;
 }

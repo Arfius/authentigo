@@ -6,6 +6,7 @@ var mongoose = require('mongoose')
     user = mongoose.model('users');
     var sha1 = require('sha1');
     var debug= require('debug')('Authentigo:passport.local.config')
+    var code= require('../config/code');
 
 module.exports = function (passport)
 {
@@ -33,7 +34,7 @@ module.exports = function (passport)
 
             if(!user){
                 debug('findOne with user not found' )
-                return done(null, false, { message: 'error login.' });
+                return done(null, false, code[401]);
             }
 
             debug("Authentication:"+username+" "+password )
@@ -46,7 +47,7 @@ module.exports = function (passport)
             }else
             {
                 debug('findOne with Incorrect login.' )
-                return done(null, false, { message: 'Incorrect login.' });
+                return done(null, false, code[401]);
             }
         });
 

@@ -10,6 +10,9 @@ var session = require('express-session')
 var debug = require('debug')('DummyServer')
 // load models
 
+var memberSchema = require('./member')
+var  member = mongoose.model('members');
+
 var authsetting= require('./authentigo.json')
 
 debug('DUMMY SERVER AuthentiGo')
@@ -17,7 +20,7 @@ debug('DUMMY SERVER AuthentiGo')
 var authentigo=require('../index.js');
 console.log(authentigo)
 authentigo.settings(authsetting)
-authentigo.init(app,router);
+authentigo.init(app,router,[member]);
 
 // configure middleware
 var port=3210

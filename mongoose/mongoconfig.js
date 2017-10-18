@@ -2,6 +2,7 @@
 var mongoose = require('mongoose');
 var debug= require('debug')('Authentigo:mongoconfig');
 require('../class/user.js');
+require('../class/rule.js');
 
 var env = process.env.NODE_ENV
 debug('Mode:'+env);

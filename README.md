@@ -1,18 +1,12 @@
 # AuthentiGo
-AuthentiGo is a software package that implements the procedure for registration and authentication for a Nodejs web app. AuthentiGo wraps several packages and it is based on the web application framework [**express**](https://expressjs.com) and [**MongoDB**](http://www.mongodb.com). [**Passport-js**](http://www.passportjs.org) is used as authentication manager with **LocalStrategy**, wherease, as email manager, [**node-mailer**](http://www.nodemailer.com) is used.
+**AuthentiGo** is a javascript package that implements the procedure for registration, authentication and role-manager for a Nodejs web app. **AuthentiGo** wraps several packages and it is based on the web application framework [**express**](https://expressjs.com) and [**MongoDB**](http://www.mongodb.com). [**Passport-js**](http://www.passportjs.org) is used as authentication manager with **LocalStrategy**, wherease, as email manager, [**node-mailer**](http://www.nodemailer.com) is used. **AuthentiGo** uses [**Express-restify-mongoose**](https://florianholzapfel.github.io/express-restify-mongoose/) to manage the User model.
 
-AuthentiGo needs the email address of the user to start the registration procedure. After receiving the email, AuthentiGo creates a disabled account and send back the confirmation link via email for enabling. 
+**AuthentiGo** accepts a email address of the user to start the registration procedure. After receiving the email, **AuthentiGo** creates a disabled account and send back the confirmation link via email for enabling. 
 
-After account confirmation, the account will be send to the user. In case of the password has been forgotten, AuthentiGo send a new one via email, if the account is not confirmed, the 'confirmation link' will be re-send.
+After account confirmation, the account credential will be send to the user. In case of the password has been forgotten, AuthentiGo send a new one via email, if the account is not confirmed, the 'confirmation link' will be re-send.
 
-<!--~~[**Express-restify-mongoose**](https://florianholzapfel.github.io/express-restify-mongoose/) is used to manipulate the user account.~~ [TO BE IMPROVED]-->
+Using **AuthentiGo**, you have an all-in-one mechanism for: **Registration and mail confirmation**, **Login**, **Password recovery**, **Logout**, **Role Manager**
 
-Using AuthentiGo, you have an all-in-one mechanism for : 
-
-* **Registration with mail confirmation**
-* **Login**
-* **Password recovery**
-* **Logout**
 
 ## Installation
 
@@ -55,6 +49,10 @@ var authsetting = {
   {
     "success_page":"http://localhost:3210/success_page",
     "failure_page":"http://www.failure.ocm/page"
+  },
+  "use":
+  {
+    "role":"true"
   }
 }
 
@@ -64,10 +62,11 @@ var authentigo=require('authentigo');
 //2 . Apply the settings to the package.
 authentigo.settings(authsetting);
 
-//3 . Pass the express app and the router to authentigo.
-authentigo.init(app,router);
+//3 . Pass the express app, the router and an array of mongoose schema to authentigo.
+authentigo.init(app,router,listModels)
 ```
-
+##Role Manager
+How work the role manager
 
 ##ReST endpoints 
 ### ==[/url_prefix]/login==
@@ -124,10 +123,10 @@ node test/dummy.server.js
 ```sh
 npm test
 ```
-- [x] Login
-- [x] Login with Error
-- [x] User Registration
-- [ ] User Confirm
-
+- [X] Login
+- [X] Login with Error
+- [X] User Registration
+- [X] User Confirm
+- [X] Role
 
  
