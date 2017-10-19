@@ -1,6 +1,6 @@
 
 var restify = require('express-restify-mongoose');
-var mongoose = require('mongoose');
+var mongoose = require('../mongoose/mongoconfig').aut_mongoose;
 var  user = mongoose.model('users');
 var  rule = mongoose.model('rules');
 var _ = require('underscore');
@@ -10,8 +10,29 @@ var debug = require('debug')('Authentigo:config')
 var rulesList = require('../restify/rules');
 var _preMiddleware= require('../restify/role').preMiddlewareRestify;
 
-module.exports = function(restifyconfig)
+module.exports = function(restifyconfig,listClass)
 {
+    debug("init")
+    debug("use_role",process.env.authentigo_use_role)
+
+    if(process.env.authentigo_use_role=="true")
+    {
+        debug("using role")
+
+        for(var i =0; i<listClass.length;i++)
+        {
+            restify.serve(restifyconfig, listClass[i],{preMiddleware:_preMiddleware});
+        }
+    }else
+    {
+        debug("not using role")
+
+        for(var i =0; i<listClass.length;i++)
+        {
+            restify.serve(restifyconfig, listClass[i]);
+        }
+    }
+
 
     debug('Update Rules')
     rule.remove({}, function(err)

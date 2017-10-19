@@ -4,7 +4,7 @@
 /**
  * Created by alfonso on 04/09/16.
  */
-var mongoose = require('mongoose');
+var mongoose = require('../mongoose/mongoconfig').aut_mongoose;
 var Schema = mongoose.Schema;
 var shortid = require('shortid');
 var sha1 = require('sha1');

@@ -11,19 +11,22 @@ var   chai = require('chai')
 
       require('../class/user');
 
-var User=  require('mongoose').model('users');
+var mongoose = require('../mongoose/mongoconfig').aut_mongoose
+var User=  mongoose.model('users');
+
 var url= "http://localhost:3210/api/v1/"
+var agent = request.agent(url) ;
 
 describe("[Test Registrazione / Login Utenti]", function()
 {
-    var agent = request.agent(url) ;
+
 
     it('AGENT:Login corretto ', function(done)
     {
          var account =
          {
             username: 'user@prova.it',
-            password: 'SkQr0#XuW',
+            password: 'rJLHdprT#',
          };
 
          agent
@@ -41,8 +44,12 @@ describe("[Test Registrazione / Login Utenti]", function()
          });
      });
 
+});
 
-    /*it('AGENT:Test / ROLE ', function(done)
+describe("[Test / ROLE]", function()
+{
+
+    it('AGENT:Test / ROLE URL ALLOWED', function(done)
     {
             agent
             .get('members')
@@ -58,7 +65,25 @@ describe("[Test Registrazione / Login Utenti]", function()
                 res.status.should.be.equal(200);
                 done();
             });
-    });*/
+    });
+
+    it('AGENT:Test / ROLE URL NOT ALLOWED', function(done)
+    {
+        agent
+            .post('members')
+            .end(function(err, res)
+            {
+
+                if (err)
+                {
+                    console.log(err);
+                    throw err;
+                }
+
+                res.status.should.be.equal(400);
+                done();
+            });
+    });
 
 
 });

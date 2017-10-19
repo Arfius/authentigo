@@ -1,7 +1,7 @@
 /**
  * Created by alfonso on 20/02/17.
  */
-var mongoose = require('mongoose');
+var mongoose = require('../mongoose/mongoconfig').aut_mongoose;
 var Schema = mongoose.Schema;
 
 var  rule = new Schema({

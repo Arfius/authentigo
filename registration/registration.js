@@ -3,7 +3,7 @@
  */
 
 var debug= require('debug')('Authentigo:registration');
-var mongoose = require('mongoose')
+var mongoose = require('../mongoose/mongoconfig').aut_mongoose
     , User = mongoose.model('users')
     ,_ = require('underscore')
     , localmail = require('../mailer/local.mailer')

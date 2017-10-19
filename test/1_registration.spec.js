@@ -11,7 +11,9 @@ var   chai = require('chai')
 
       require('../class/user');
 
-var User=  require('mongoose').model('users');
+var mongoose = require('../mongoose/mongoconfig').aut_mongoose
+var User=  mongoose.model('users');
+
 
 var url= "http://localhost:3210/api/v1/"
 
@@ -26,7 +28,7 @@ describe("[Test Registrazione / Login Utenti]", function()
         user.enabled= true;
         user.save(function(error,success)
         {
-            require('mongoose').model('users').remove({username:"alfonso.farruggia@gmail.com"}, function(error,success)
+            mongoose.model('users').remove({username:"alfonso.farruggia@gmail.com"}, function(error,success)
             {
                 done();
             });
@@ -39,7 +41,7 @@ describe("[Test Registrazione / Login Utenti]", function()
          var account =
          {
             username: 'user@prova.it',
-            password: 'SkQr0#XuW',
+            password: 'rJLHdprT#',
          };
 
          request(url)

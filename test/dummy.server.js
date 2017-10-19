@@ -2,19 +2,30 @@
  * Created by alfonso on 16/08/17.
  */
 const express = require('express')
-const restify = require('express-restify-mongoose')
 const app = express()
 const router = express.Router()
 var session = require('express-session')
-var debug = require('debug')('DummyServer')
+var debug = require('debug')('Authentigo:DummyServer')
 
+//MONGOOSE
+var memberSchema = require('./member')
+var mongoose = require('mongoose')
+var  member = mongoose.model('members');
+mongoose.connect('mongodb://localhost/server-dummy-Authentigo');
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+
+db.once('open', function callback ()
+{
+    debug('server-dummy-Authentigo opened');
+});
 
 // load AUTENTIGO
 var authsetting= require('./authentigo.json')
 debug('DUMMY SERVER AuthentiGo')
 var authentigo=require('../index.js');
 authentigo.settings(authsetting)
-authentigo.init(app,router);
+authentigo.init(app,router,[member]);
 
 // configure middleware
 var port=3210
@@ -32,17 +43,6 @@ app.all('*', function(req, res, next) {
     next();
 });
 
-//MONGOOSE
-var memberSchema = require('./member')
-var  member = mongoose.model('members');
-mongoose.connect('mongodb://localhost/server-dummy-Authentigo');
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-
-db.once('open', function callback ()
-{
-    debug('server-dummy-Authentigo opened');
-});
 
 //RUN SERVER
 app.use(router);

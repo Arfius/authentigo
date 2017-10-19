@@ -1,25 +1,9 @@
 
-var mongoose = require('mongoose');
+var Mongoose = require('mongoose').Mongoose;
+var mongoose = new Mongoose();
 var debug= require('debug')('Authentigo:mongoconfig');
-require('../class/user.js');
-require('../class/rule.js');
+debug("Export");
+exports.aut_mongoose=mongoose;
 
-var env = process.env.NODE_ENV
-debug('Mode:'+env);
-
-if(env == 'production')
-  mongoose.connect('mongodb://localhost/'+process.env.prefix_db+'-Authentigo');
-else
-if(env == 'test')
-  mongoose.connect('mongodb://localhost/'+process.env.prefix_db+'-Authentigo-test');
-else
-  mongoose.connect('mongodb://localhost/'+process.env.prefix_db+'-Authentigo-dev');
-
-
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-
-db.once('open', function callback ()
-{
-  debug('authentigo opened');
-});
+require('./mongomodel');
+require('./initdatabase').init();

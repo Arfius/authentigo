@@ -1,10 +1,8 @@
 /**
  * Created by alfonso on 20/02/17.
  */
-require('../class/rule');
-require('../class/user');
 var debug = require('debug')('Authentigo:role')
-var mongoose = require('mongoose');
+var mongoose = require('../mongoose/mongoconfig').aut_mongoose;
 var  user = mongoose.model('users')
     ,rule = mongoose.model('rules')
     , _ = require('underscore');

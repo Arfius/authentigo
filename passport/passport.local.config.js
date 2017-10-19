@@ -1,7 +1,7 @@
 /**
  * Created by alfonso on 19/02/17.
  */
-var mongoose = require('mongoose')
+var mongoose = require('../mongoose/mongoconfig').aut_mongoose
     , LocalStrategy = require('passport-local').Strategy,
     user = mongoose.model('users');
     var sha1 = require('sha1');
