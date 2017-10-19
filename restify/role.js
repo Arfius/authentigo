@@ -4,41 +4,13 @@
 require('../class/rule');
 require('../class/user');
 var debug = require('debug')('Authentigo:role')
-var restify = require('express-restify-mongoose');
-
 var mongoose = require('mongoose');
 var  user = mongoose.model('users')
     ,rule = mongoose.model('rules')
     , _ = require('underscore');
-
 var code= require('../config/code');
 
-module.exports=function(restifyconfig,listClass)
-{
-    debug("init")
-
-    if(process.env.use_role=="true")
-    {
-        debug("using role")
-
-        for(var i =0; i<listClass.length;i++)
-        {
-            restify.serve(restifyconfig, listClass[i],{preMiddleware:checkPermission});
-        }
-    }else
-    {
-        debug("not using role")
-
-        for(var i =0; i<listClass.length;i++)
-        {
-            restify.serve(restifyconfig, listClass[i]);
-        }
-    }
-
-}
-
-
-var checkPermission=function(req, res,next)
+module.exports.preMiddlewareRestify=function(req, res,next)
 {
     debug("checkPermission - init")
     var url= req.url;

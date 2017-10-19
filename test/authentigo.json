@@ -24,7 +24,8 @@
   },
   "use":
   {
-    "role":"true"
+    "role":"true",
+    "prefix_db":"dummy"
   }
 
 }

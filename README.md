@@ -49,10 +49,6 @@ var authsetting = {
   {
     "success_page":"http://localhost:3210/success_page",
     "failure_page":"http://www.failure.ocm/page"
-  },
-  "use":
-  {
-    "role":"true"
   }
 }
 
@@ -63,7 +59,7 @@ var authentigo=require('authentigo');
 authentigo.settings(authsetting);
 
 //3 . Pass the express app, the router and an array of mongoose schema to authentigo.
-authentigo.init(app,router,listModels)
+authentigo.init(express,router)
 ```
 ##Role Manager
 How work the role manager
@@ -114,12 +110,12 @@ How work the role manager
 	* **Error** : Status:500 , `{mess:"Internal Server Error"}`
 
 
-##Example
+## Example
 
 ```sh
 node test/dummy.server.js
 ```
-##Test
+## Test
 ```sh
 npm test
 ```

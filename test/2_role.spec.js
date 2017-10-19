@@ -42,7 +42,7 @@ describe("[Test Registrazione / Login Utenti]", function()
      });
 
 
-    it('AGENT:Test / ROLE ', function(done)
+    /*it('AGENT:Test / ROLE ', function(done)
     {
             agent
             .get('members')
@@ -58,7 +58,7 @@ describe("[Test Registrazione / Login Utenti]", function()
                 res.status.should.be.equal(200);
                 done();
             });
-    });
+    });*/
 
 
 });

@@ -8,7 +8,7 @@ var sha1= require('sha1');
 var debug = require('debug')('Authentigo:config')
 
 var rulesList = require('../restify/rules');
-var _preMiddleware= require('../restify/role');
+var _preMiddleware= require('../restify/role').preMiddlewareRestify;
 
 module.exports = function(restifyconfig)
 {
@@ -37,9 +37,4 @@ var _contextFilter=function (model, req, done) {
 var _preUpdate= function(req, res, next)
 {
     next()
-}
-
-var _preMiddleware=function(req, res, next)
-{
-    next();
 }

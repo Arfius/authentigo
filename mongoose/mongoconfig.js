@@ -8,12 +8,12 @@ var env = process.env.NODE_ENV
 debug('Mode:'+env);
 
 if(env == 'production')
-  mongoose.connect('mongodb://localhost/authentigo');
+  mongoose.connect('mongodb://localhost/'+process.env.prefix_db+'-Authentigo');
 else
 if(env == 'test')
-  mongoose.connect('mongodb://localhost/authentigo-test');
+  mongoose.connect('mongodb://localhost/'+process.env.prefix_db+'-Authentigo-test');
 else
-  mongoose.connect('mongodb://localhost/authentigo-dev');
+  mongoose.connect('mongodb://localhost/'+process.env.prefix_db+'-Authentigo-dev');
 
 
 var db = mongoose.connection;
