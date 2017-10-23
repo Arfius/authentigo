@@ -26,7 +26,7 @@ describe("[Test Registrazione / Login Utenti]", function()
          var account =
          {
             username: 'user@prova.it',
-            password: 'rJLHdprT#',
+            password: 'HkXTdqj6b',
          };
 
          agent

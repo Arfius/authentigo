@@ -41,7 +41,7 @@ describe("[Test Registrazione / Login Utenti]", function()
          var account =
          {
             username: 'user@prova.it',
-            password: 'rJLHdprT#',
+            password: 'HkXTdqj6b',
          };
 
          request(url)
@@ -83,7 +83,7 @@ describe("[Test Registrazione / Login Utenti]", function()
             });
     });
 
-    it('Registrazione', function(done)
+    /*it('Registrazione', function(done)
     {
         var account =
         {
@@ -105,7 +105,7 @@ describe("[Test Registrazione / Login Utenti]", function()
                 done();
             });
     });
-
+*/
 });
 
 

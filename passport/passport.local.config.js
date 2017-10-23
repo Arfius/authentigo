@@ -10,15 +10,19 @@ var mongoose = require('../mongoose/mongoconfig').aut_mongoose
 
 module.exports = function (passport)
 {
-    passport.serializeUser(function(user, done) {
-        debug('serializeUser')
-        done(null, user);
+    passport.serializeUser(function(user, cb) {
+        debug('serializeUser',user.id)
+        cb(null, user.id);
     });
 
-    passport.deserializeUser(function(user, done) {
-        debug('deserializeUser')
-        done(null, user);
+    passport.deserializeUser(function(id, cb) {
+        debug('deserializeUser',id)
+        user.findOne({_id:id , enabled:true }, function (err, user) {
+            if (err) { return cb(err); }
+            cb(null, user);
+        });
     });
+
 
     passport.use(new LocalStrategy(function(username, password, done)
     {

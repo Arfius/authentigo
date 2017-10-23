@@ -6,11 +6,9 @@ var  rule = mongoose.model('rules');
 var _ = require('underscore');
 var sha1= require('sha1');
 var debug = require('debug')('Authentigo:config')
-
-var rulesList = require('../restify/rules');
 var _preMiddleware= require('../restify/role').preMiddlewareRestify;
 
-module.exports = function(restifyconfig,listClass)
+module.exports = function(restifyconfig,listClass,rulesList)
 {
     debug("init")
     debug("use_role",process.env.authentigo_use_role)
@@ -34,10 +32,10 @@ module.exports = function(restifyconfig,listClass)
     }
 
 
-    debug('Update Rules')
+    debug('Update Rules',rulesList)
     rule.remove({}, function(err)
     {
-        rulesList.rules.forEach(function(value)
+        rulesList.forEach(function(value)
         {
             var r = new rule(value);
             r.save();
