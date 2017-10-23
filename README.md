@@ -65,15 +65,15 @@ authentigo.init(express,router)
 How work the role manager
 
 ##ReST endpoints 
-### ==[/url_prefix]/login==
+### [/url_prefix]/login
 * **Method** : POST
 * **Request Params** : `{username:"email@domain.it" , password:"mysecret1234"}` 
 * **Server Response** : 
-	* **Success** : Status:200 , `{mess:"OK"}`
+	* **Success** : Status:200 , `[user Object]`
 	* **Failure** : Status:401 , `{mess:"Unauthorized"}`
 	* **Error** : Status:500 , `{mess:"Internal Server Error"}`
 
-### ==[/url_prefix]/registration== 
+### [/url_prefix]/registration
 * **Method** : POST
 * **Request Params** : `{email:"email@domain.it" , r_email:"email@domain.it"}` 
 * **Server Response** : 
@@ -81,19 +81,19 @@ How work the role manager
 	* **Failure** : Status:400 , `{mess:"Bad Request"}`
 	* **Error** : Status:500 , `{mess:"Internal Server Error"}`
 
-### ==[/url_prefix]/logout== 
+### [/url_prefix]/logout
 * **Method** : GET
 * **Server Response** : 
 	* **Success** : Status:200 , `{mess:"OK"}`
 	* **Error** : Status:500 , `{mess:"Internal Server Error"}`
 
-### ==[/url_prefix]/check== 
+### [/url_prefix]/check
 * **Method** : GET
 * **Server Response** : 
 	* **Success** : Status:200 , `{mess:"OK"}`
 	* **Failure** : Status:401 , `{mess:"Unauthorized"}`
 
-### ==[/url_prefix]/confirm/:id==
+### [/url_prefix]/confirm/:id
 * **Method** : GET
 * **Request Params** : `{id:"0123useridzxcv"}` 
 * **Server Response** : 
@@ -101,7 +101,7 @@ How work the role manager
 	* **Failure** : Redirect to `failure_page`
 	* **Error** : Status:500 , `{mess:"Internal Server Error"}`
 
-### ==[/url_prefix]/forgot==
+### [/url_prefix]/forgot
 * **Method** : GET
 * **Request Params** : `{username:"email@domain.it"}` 
 * **Server Response** : 

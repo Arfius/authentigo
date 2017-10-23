@@ -8,6 +8,7 @@ var code= require('../config/code');
 
 module.exports = function(app,passport)
 {
+    debug('login_url '+process.env.authentigo_url_prefix)
     app.post(process.env.authentigo_url_prefix+'/login', function(req, res, next)
     {
         passport.authenticate('local', function(err, user, info)
@@ -35,7 +36,7 @@ module.exports = function(app,passport)
                 delete newuser['enabled'];
                 delete newuser['created'];
                 delete newuser['salt'];
-
+                newuser.code=200;
                 debug("login-ok" + newuser._id)
                 return res.status(200).json(newuser);
             });
