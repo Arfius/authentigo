@@ -1,6 +1,6 @@
 {
   "name": "authentigo",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "AuthentiGo is a software package that implements the procedure for registration and authentication for a Nodejs web app.",
   "main": "index.js",
   "scripts": {

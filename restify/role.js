@@ -8,7 +8,7 @@ var  user = mongoose.model('users')
     , _ = require('underscore');
 var code= require('../config/code');
 
-module.exports.preMiddlewareRestify=function(req, res,next)
+module.exports.preMiddlewareRestify=function(req, _res,next)
 {
     debug("checkPermission - init")
     var url= req.url;
@@ -31,24 +31,25 @@ module.exports.preMiddlewareRestify=function(req, res,next)
 
                         } else {
                             debug(" checkPermission 1 - _getRulebyRoleAndUrl-resolve "+ method + " 401 PeDe")
-                            res.status(401).json(code[401]);
+                            debug(res);
+                            _res.status(401).json(code[401]);
                         }
                     },
                     function (err) {
-                        res.status(500).json(code[500]);
+                        _res.status(500).json(code[500]);
                     }
                 )
             },
             function (err) {
                 debug(" checkPermission 2 - _getRolebyUserid-reject "+ err)
-                res.status(401).json(code[401]);
+                _res.status(401).json(code[401]);
 
             }
         )
     }else
     {
         debug(" checkPermission - _getRulebyRoleAndUrl-notAuthenticated "+ method + "401PeDe")
-        res.status(401).json(code[401]);
+        _res.status(401).json(code[401]);
     }
 
 }
