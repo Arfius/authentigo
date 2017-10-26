@@ -30,7 +30,7 @@ module.exports.preMiddlewareRestify=function(req, res,next)
                             next();
 
                         } else {
-                            debug(" checkPermission - _getRulebyRoleAndUrl-resolve "+ method + " 401 PeDe")
+                            debug(" checkPermission 1 - _getRulebyRoleAndUrl-resolve "+ method + " 401 PeDe")
                             res.status(401).json(code[401]);
                         }
                     },
@@ -40,7 +40,7 @@ module.exports.preMiddlewareRestify=function(req, res,next)
                 )
             },
             function (err) {
-                debug(" checkPermission - _getRolebyUserid-reject "+ err)
+                debug(" checkPermission 2 - _getRolebyUserid-reject "+ err)
                 res.status(401).json(code[401]);
 
             }
