@@ -41,7 +41,7 @@ describe("[Test Registrazione / Login Utenti]", function()
          var account =
          {
             username: 'user@prova.it',
-            password: 'HkXTdqj6b',
+            password: 'BytLl5Oyf',
          };
 
          request(url)
@@ -65,7 +65,7 @@ describe("[Test Registrazione / Login Utenti]", function()
         var account =
         {
             username: 'user@prova.it',
-            password: 'HJTQTqb$#__',
+            password: 'BytLl5Oyf#__',
         };
 
         request(url)
@@ -82,6 +82,7 @@ describe("[Test Registrazione / Login Utenti]", function()
                 done();
             });
     });
+
 
     /*it('Registrazione', function(done)
     {
@@ -104,8 +105,8 @@ describe("[Test Registrazione / Login Utenti]", function()
                 res.status.should.be.equal(200);
                 done();
             });
-    });
-*/
+    });*/
+
 });
 
 

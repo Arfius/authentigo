@@ -6,7 +6,7 @@ var mongoose = require('../mongoose/mongoconfig').aut_mongoose
     user = mongoose.model('users');
     var sha1 = require('sha1');
     var debug= require('debug')('Authentigo:passport.local.config')
-    var code= require('../config/code');
+    var code=  require('../config/code');
 
 module.exports = function (passport)
 {

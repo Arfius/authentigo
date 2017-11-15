@@ -16,12 +16,14 @@ var User=  mongoose.model('users');
 
 var url= "http://localhost:3210/api/v1/"
 var agent = request.agent(url) ;
+var account_creato;
 
 describe("[Test Registrazione / Login Utenti]", function()
 {
 
 
-    it('AGENT:Login corretto ', function(done)
+
+    it('AGENT:Login  ', function(done)
     {
          var account =
          {
@@ -39,6 +41,7 @@ describe("[Test Registrazione / Login Utenti]", function()
                 console.log(err);
                 throw err;
              }
+             account_creato=res.body;
              res.status.should.be.equal(200);
              done();
          });
@@ -46,13 +49,19 @@ describe("[Test Registrazione / Login Utenti]", function()
 
 });
 
-describe("[Test / ROLE]", function()
+describe("[Test Middleware]", function()
 {
 
-    it('AGENT:Test / ROLE URL ALLOWED', function(done)
+    it('AGENT:Cambio Password', function(done)
     {
-            agent
-            .get('members')
+            var account =
+            {
+                password: 'password',
+            };
+
+             agent
+            .patch('users/'+account_creato._id)
+            .send(account)
             .end(function(err, res)
             {
 
@@ -66,26 +75,6 @@ describe("[Test / ROLE]", function()
                 done();
             });
     });
-
-    it('AGENT:Test / ROLE URL NOT ALLOWED', function(done)
-    {
-        agent
-            .post('members')
-            .end(function(err, res)
-            {
-
-                if (err)
-                {
-                    console.log(err);
-                    throw err;
-                }
-
-                res.status.should.be.equal(400);
-                done();
-            });
-    });
-
-
 
 
 });

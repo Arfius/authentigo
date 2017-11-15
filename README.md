@@ -124,5 +124,6 @@ npm test
 - [X] User Registration
 - [X] User Confirm
 - [X] Role
+- [X] Update Password
 
  

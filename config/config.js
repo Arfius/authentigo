@@ -46,7 +46,7 @@ module.exports = function(restifyconfig,listClass,rulesList)
     restify.serve(restifyconfig, user,{preMiddleware:_preMiddleware,contextFilter:_contextFilter, preUpdate:_preUpdate});
 
     debug('Rule Restify API')
-    restify.serve(restifyconfig, rule,{preMiddleware:_preMiddleware,contextFilter:_contextFilter, preUpdate:_preUpdate});
+    restify.serve(restifyconfig, rule,{preMiddleware:_preMiddleware,contextFilter:_contextFilter});
 }
 
 var _contextFilter=function (model, req, done) {
@@ -55,5 +55,11 @@ var _contextFilter=function (model, req, done) {
 
 var _preUpdate= function(req, res, next)
 {
+
+    if(!_.isUndefined(req.body.password))
+    {
+        req.body.password=sha1(req.body.password);
+    }
+
     next()
 }

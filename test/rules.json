@@ -1,5 +1,6 @@
 [
     {"role":"admin","method":["GET"],"url":"/api/v1/members"},
+    {"role":"admin","method":["GET","PATCH"],"url":"/api/v1/users"},
     {"role":"master","method":["UPDATE"],"url":"/api/v1/members"},
     {"role":"slave","method":["PUT"],"url":"/api/v1/members"}
 ]

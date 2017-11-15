@@ -74,4 +74,8 @@ var _getRulebyRoleAndUrl= function(role,url)
     return rule.findOne({role:role,url:new RegExp(url)});
 }
 
+// MIDDLEWARE
+
+
+
 
