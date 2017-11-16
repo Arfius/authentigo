@@ -56,10 +56,13 @@ var saveAccount= function(new_account,res)
 module.exports.registration=function (req, res, next)
 {
     debug("registration init");
-
+    var g_pass= generatePassword();
     var account = req.body;
         var new_account= new User();
         new_account.username=account.email;
+        new_account.salt=g_pass.salt;
+        new_account.password=g_pass.password;
+
         saveAccount(new_account,res);
 }
 

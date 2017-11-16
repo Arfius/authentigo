@@ -4,9 +4,14 @@ var mongoose = require('../mongoose/mongoconfig').aut_mongoose;
 var  user = mongoose.model('users');
 var  rule = mongoose.model('rules');
 var _ = require('underscore');
-var sha1= require('sha1');
 var debug = require('debug')('Authentigo:config')
 var _preMiddleware= require('../restify/role').preMiddlewareRestify;
+
+
+var shortid = require('shortid');
+var sha1 = require('sha1');
+shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$#');
+
 
 module.exports = function(restifyconfig,listClass,rulesList)
 {
@@ -43,7 +48,7 @@ module.exports = function(restifyconfig,listClass,rulesList)
     })
 
     debug('User Restify API')
-    restify.serve(restifyconfig, user,{preMiddleware:_preMiddleware,contextFilter:_contextFilter, preUpdate:_preUpdate});
+    restify.serve(restifyconfig, user,{preMiddleware:_preMiddleware,contextFilter:_contextFilter, preUpdate:_preUpdate, preCreate:_preCreate});
 
     debug('Rule Restify API')
     restify.serve(restifyconfig, rule,{preMiddleware:_preMiddleware,contextFilter:_contextFilter});
@@ -58,7 +63,21 @@ var _preUpdate= function(req, res, next)
 
     if(!_.isUndefined(req.body.password))
     {
-        req.body.password=sha1(req.body.password);
+        req.body.password=sha1(req.user.salt+""+req.body.password);
+    }
+
+    next()
+}
+
+var _preCreate= function(req, res, next)
+{
+
+    var salt=shortid.generate();
+
+    if(!_.isUndefined(req.body.password))
+    {
+        req.body.salt=salt;
+        req.body.password=sha1(salt+""+req.body.password);
     }
 
     next()

@@ -43,7 +43,7 @@ module.exports = function (passport)
 
             debug("Authentication:"+username+" "+password )
 
-            if(username==user.username && sha1(password) == user.password)
+            if(username==user.username && sha1(user.salt+""+password) == user.password)
             {
                 debug('findOne with user found' )
 
