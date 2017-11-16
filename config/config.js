@@ -60,6 +60,7 @@ var _contextFilter=function (model, req, done) {
 
 var _preUpdate= function(req, res, next)
 {
+    debug("_preUpdate:"+req.user.username);
 
     if(!_.isUndefined(req.body.password))
     {
@@ -71,6 +72,7 @@ var _preUpdate= function(req, res, next)
 
 var _preCreate= function(req, res, next)
 {
+    debug("_preCreate:"+req.user.username);
 
     var salt=shortid.generate();
 

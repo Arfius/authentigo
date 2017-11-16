@@ -41,7 +41,7 @@ module.exports = function (passport)
                 return done(null, false, code[401]);
             }
 
-            debug("Authentication:"+username+" "+password )
+            debug("Authentication:"+username+" "+password+" "+user.salt )
 
             if(username==user.username && sha1(user.salt+""+password) == user.password)
             {

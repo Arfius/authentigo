@@ -38,6 +38,10 @@ describe("[Test Registrazione / Login Utenti]", function()
 
     it('Login corretto', function(done)
     {
+        //password c55008fd7bc81ce3cb882b67b7d152ef406fe3ad
+        //salt BytLl5Oyf
+        //prima password uguale al salt
+
          var account =
          {
             username: 'user@prova.it',

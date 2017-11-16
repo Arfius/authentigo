@@ -19,7 +19,7 @@ function generatePassword()
 
     return pass_salt={
         salt: salt,
-        password: sha1(salt)
+        password: sha1(salt+""+salt)
     }
 }
 

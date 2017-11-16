@@ -52,7 +52,7 @@ describe("[Test Registrazione / Login Utenti]", function()
 describe("[Test Middleware]", function()
 {
 
-    it('AGENT:Cambio Password', function(done)
+    it('Cambio Password', function(done)
     {
             var account =
             {
@@ -60,6 +60,54 @@ describe("[Test Middleware]", function()
             };
 
              agent
+            .patch('users/'+account_creato._id)
+            .send(account)
+            .end(function(err, res)
+            {
+
+                if (err)
+                {
+                    console.log(err);
+                    throw err;
+                }
+
+                res.status.should.be.equal(200);
+                done();
+            });
+    });
+
+    it('Login corretto dopo cambio password', function(done)
+    {
+
+        var account =
+        {
+            username: 'user@prova.it',
+            password: 'password',
+        };
+
+        request(url)
+            .post('login')
+            .send(account)
+            .end(function(err, res)
+            {
+                if (err)
+                {
+                    console.log(err);
+                    throw err;
+                }
+                res.status.should.be.equal(200);
+                done();
+            });
+    });
+
+    it('Imposto Password originale', function(done)
+    {
+        var account =
+        {
+            password: 'BytLl5Oyf',
+        };
+
+        agent
             .patch('users/'+account_creato._id)
             .send(account)
             .end(function(err, res)
