@@ -13,11 +13,12 @@ var debug= require('debug')('Authentigo:user.schema');
 
 
 var user = new Schema({
+    name:{ type: String},
     username: { type: String, lowercase: true, trim: true, required: true, unique: true },
     token: { type: String },
     password: { type: String, required:true },
     salt: { type: String ,  required:true },
-    role: { type: String,  enum: ['admin','master','slave'], default:"master", require:true },
+    role: { type: String,  enum: ['admin','master','slave'], default:"admin", require:true },
     deleted: { type: Boolean,default:false },
     enabled: { type: Boolean, default:false},
     created: { type: Date, default:Date.now},
