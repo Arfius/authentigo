@@ -101,7 +101,7 @@ describe("[Test Middleware]", function()
     });
 
 
-    it('Test extermal', function(done)
+    it('Test external', function(done)
     {
 
             agent

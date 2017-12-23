@@ -27,7 +27,7 @@ module.exports.preMiddlewareRestify=function(req, _res,next)
                         debug(" checkPermission - _getRulebyRoleAndUrl->  "+ res.method)
                         if (_.indexOf(res.method, method) >= 0) {
                             debug(" checkPermission - _getRulebyRoleAndUrl-resolve "+ method + " 200OK")
-                            next();
+                            next(req, _res);
 
                         } else {
                             debug(" checkPermission 1 - _getRulebyRoleAndUrl-resolve "+ method + " 401 PeDe")
