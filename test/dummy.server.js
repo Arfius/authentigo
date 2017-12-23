@@ -30,7 +30,6 @@ var authentigo=require('../index.js');
 authentigo.settings(authsetting)
 authentigo.init(app,router,[member],rulesList);
 
-
 // configure middleware
 var port=3210
 

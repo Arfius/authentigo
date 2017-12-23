@@ -25,7 +25,8 @@
   "use":
   {
     "role":"true",
-    "prefix_db":"dummy"
+    "prefix_db":"dummy",
+    "rules":"true"
   }
 
 }
