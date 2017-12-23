@@ -50,12 +50,34 @@ app.all('*', function(req, res, next) {
 
 //RUN SERVER
 app.use(router);
+
+app.get('/api/v1/provacheckpermission',function(req, res,next)
+{
+
+    var _fun = function()
+    {
+
+        debug("provacheckpermission _fun")
+
+        res.status(200).json({ok:"ok"});
+
+    }
+
+    debug("provacheckpermission check")
+    authentigo.externalpermissioncheck(req, res,_fun);
+
+});
+
+
+
 var server = app.listen(port, function ()
 {
     var _host = server.address().address;
     var _port = server.address().port;
     debug("Listening->"+_host+"@"+_port);
 });
+
+
 
 
 module.exports = server;

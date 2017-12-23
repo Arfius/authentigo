@@ -85,7 +85,7 @@ describe("[Test Middleware]", function()
             password: 'password',
         };
 
-        request(url)
+            agent
             .post('login')
             .send(account)
             .end(function(err, res)
@@ -95,6 +95,25 @@ describe("[Test Middleware]", function()
                     console.log(err);
                     throw err;
                 }
+                res.status.should.be.equal(200);
+                done();
+            });
+    });
+
+
+    it('Test extermal', function(done)
+    {
+
+            agent
+            .get('provacheckpermission')
+            .end(function(err, res)
+            {
+                if (err)
+                {
+                    console.log(err);
+                    throw err;
+                }
+
                 res.status.should.be.equal(200);
                 done();
             });

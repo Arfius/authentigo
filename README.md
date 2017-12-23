@@ -125,5 +125,6 @@ npm test
 - [X] User Confirm
 - [X] Role
 - [X] Update Password
+- [X] Externale Check Permission
 
  

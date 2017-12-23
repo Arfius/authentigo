@@ -2,5 +2,9 @@
     {"role":"admin","method":["GET"],"url":"/api/v1/members"},
     {"role":"admin","method":["GET","PATCH"],"url":"/api/v1/users"},
     {"role":"master","method":["UPDATE"],"url":"/api/v1/members"},
-    {"role":"slave","method":["PUT"],"url":"/api/v1/members"}
+    {"role":"slave","method":["PUT"],"url":"/api/v1/members"},
+
+    {"role":"master","method":["GET"],"url":"/api/v1/provacheckpermission"},
+    {"role":"admin","method":["GET"],"url":"/api/v1/provacheckpermission"},
+    {"role":"slave","method":["GET"],"url":"/api/v1/provacheckpermission"}
 ]
