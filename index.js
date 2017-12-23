@@ -18,12 +18,10 @@ exports.init = function(express,router,listModels,rulesList)
         require('./mongoose/mongoconfig');
         require('./passport/passport.config')(express);
         require('./config/config')(router,listModels,rulesList);
-        exp = require('./restify/role').preMiddlewareRestify;
-
     }
 }
 
-exports.externalpermissioncheck = exp
+exports.externalpermissioncheck = require('./restify/role').preMiddlewareRestify;
 
 exports.settings = function(settings)
 {
