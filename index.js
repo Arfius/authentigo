@@ -4,6 +4,7 @@
 var config = require('config');
 var _ = require('underscore');
 var debug = require('debug')('Authentigo:index');
+var _preMiddleware= require('./restify/role').preMiddlewareRestify;
 
 exports.init = function(express,router,listModels,rulesList)
 {
@@ -38,3 +39,4 @@ exports.settings = function(settings)
 
 
 }
+exports.externalpermissioncheck=_preMiddleware;

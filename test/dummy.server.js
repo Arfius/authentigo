@@ -20,6 +20,8 @@ db.once('open', function callback ()
     debug('server-dummy-Authentigo opened');
 });
 
+
+
 // load AUTENTIGO
 var rulesList = require('./rules.json');
 var authsetting= require('./authentigo.json')
@@ -27,6 +29,7 @@ debug('DUMMY SERVER AuthentiGo')
 var authentigo=require('../index.js');
 authentigo.settings(authsetting)
 authentigo.init(app,router,[member],rulesList);
+
 
 // configure middleware
 var port=3210
