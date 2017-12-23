@@ -14,7 +14,6 @@ module.exports.preMiddlewareRestify=function(req, _res,next)
     var url= req.url;
     var method= req.method;
 
-
     if (req.user)
     {
         debug("checkPermission - Auth " +  req.user._id)
@@ -27,7 +26,24 @@ module.exports.preMiddlewareRestify=function(req, _res,next)
                         debug(" checkPermission - _getRulebyRoleAndUrl->  "+ res.method)
                         if (_.indexOf(res.method, method) >= 0) {
                             debug(" checkPermission - _getRulebyRoleAndUrl-resolve "+ method + " 200OK")
-                            next();
+
+
+                            if(!_.isUndefined(req.authentigo_external))
+                            {
+
+
+                                if(req.authentigo_external)
+                                {
+                                    next(req,_res);
+                                }else {
+                                    next()
+                                }
+                            }else
+                            {
+                                next()
+                            }
+
+
 
                         } else {
                             debug(" checkPermission 1 - _getRulebyRoleAndUrl-resolve "+ method + " 401 PeDe")

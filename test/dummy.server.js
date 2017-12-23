@@ -56,15 +56,13 @@ app.get('/api/v1/provacheckpermission',function(req, res,next)
 
     var _fun = function(_req, _res)
     {
-
         debug("provacheckpermission _fun")
-
         _res.status(200).json({ok:"ok"});
-
     }
 
     debug("provacheckpermission check")
-    authentigo.externalpermissioncheck(req, res,_fun);
+    req.authentigo_external=true;
+    authentigo.externalpermissioncheck(req, res, _fun);
 
 });
 

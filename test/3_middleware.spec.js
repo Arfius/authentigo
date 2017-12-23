@@ -103,7 +103,6 @@ describe("[Test Middleware]", function()
 
     it('Test external', function(done)
     {
-
             agent
             .get('provacheckpermission')
             .end(function(err, res)
@@ -113,7 +112,6 @@ describe("[Test Middleware]", function()
                     console.log(err);
                     throw err;
                 }
-
                 res.status.should.be.equal(200);
                 done();
             });

@@ -64,6 +64,10 @@ authentigo.init(express,router)
 ##Role Manager
 How work the role manager
 
+## Use Check Permission external to library
+Use  req.authentigo_external="true";
+
+
 ##ReST endpoints 
 ### [/url_prefix]/login
 * **Method** : POST
