@@ -64,7 +64,7 @@ var _preUpdate= function(req, res, next)
 
     if(!_.isUndefined(req.body.password))
     {
-        req.body.password=sha1(req.user.salt+""+req.body.password);
+        req.body.password=sha1(req.body.salt+""+req.body.password);
     }
 
     next()
