@@ -10,22 +10,22 @@ var code= require('../config/code');
 
 module.exports.preMiddlewareRestify=function(req, _res,next)
 {
-    debug("["+req.user.username+"] checkPermission - init")
+    debug("["+req.user._id+"] checkPermission - init")
     var url= req.url;
     var method= req.method;
 
     if (req.user)
     {
-        debug("["+req.user.username+"] checkPermission - Auth " +  req.user._id)
+        debug("["+req.user._id+"] checkPermission - Auth " +  req.user._id)
 
         _getRolebyUserid(req.user._id).then(
             function (res) {
-                debug("["+req.user.username+"] checkPermission - _getRolebyUserid-resolve " + url)
+                debug("["+req.user._id+"] checkPermission - _getRolebyUserid-resolve " + url)
                 _getRulebyRoleAndUrl(res.role, url).then(
                     function (res) {
-                        debug("["+req.user.username+"]  checkPermission - _getRulebyRoleAndUrl->  "+ res.method)
+                        debug("["+req.user._id+"]  checkPermission - _getRulebyRoleAndUrl->  "+ res.method)
                         if (_.indexOf(res.method, method) >= 0) {
-                            debug("["+req.user.username+"]  checkPermission - _getRulebyRoleAndUrl-resolve "+ method + " 200OK")
+                            debug("["+req.user._id+"]  checkPermission - _getRulebyRoleAndUrl-resolve "+ method + " 200OK")
 
 
                             if(!_.isUndefined(req.authentigo_external))
@@ -46,7 +46,7 @@ module.exports.preMiddlewareRestify=function(req, _res,next)
 
 
                         } else {
-                            debug("["+req.user.username+"] checkPermission 1 - _getRulebyRoleAndUrl-resolve "+ method + " 401 PeDe")
+                            debug("["+req.user._id+"] checkPermission 1 - _getRulebyRoleAndUrl-resolve "+ method + " 401 PeDe")
                             debug(res);
                             _res.status(401).json(code[401]);
                         }
@@ -57,14 +57,14 @@ module.exports.preMiddlewareRestify=function(req, _res,next)
                 )
             },
             function (err) {
-                debug("["+req.user.username+"]  checkPermission 2 - _getRolebyUserid-reject "+ err)
+                debug("["+req.user._id+"]  checkPermission 2 - _getRolebyUserid-reject "+ err)
                 _res.status(401).json(code[401]);
 
             }
         )
     }else
     {
-        debug("["+req.user.username+"] checkPermission - _getRulebyRoleAndUrl-notAuthenticated "+ method + "401PeDe")
+        debug("["+req.user._id+"] checkPermission - _getRulebyRoleAndUrl-notAuthenticated "+ method + "401PeDe")
         _res.status(401).json(code[401]);
     }
 
