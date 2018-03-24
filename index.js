@@ -37,9 +37,6 @@ exports.settings = function(settings)
     process.env.authentigo_prefix_db=settings.use.prefix_db;
     process.env.authentigo_use_role=settings.use.role;
     process.env.authentigo_use_rules=settings.use.rules;
-    debug('process.env')
-    debug(process.env)
-
     debug('Settings end')
 }
 

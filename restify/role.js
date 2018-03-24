@@ -10,7 +10,7 @@ var code= require('../config/code');
 
 module.exports.preMiddlewareRestify=function(req, _res,next)
 {
-    debug("["+req.user._id+"] checkPermission - init")
+    debug("checkPermission - init")
     var url= req.url;
     var method= req.method;
 
