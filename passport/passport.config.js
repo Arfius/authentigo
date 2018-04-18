@@ -9,9 +9,13 @@ var debug= require('debug')('Authentigo:passport.config');
 module.exports=function(app)
 {
     debug('passport.config init')
-    app.use(bodyParser.json())
+    //app.use(bodyParser.json())
+    app.use(bodyParser.json({limit: '50mb'}));
+    app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+
     app.use(methodOverride())
     app.use(cookieParser()) // required before session.
+
 
     app.use(session({
         secret: '4uth3nt1go',
