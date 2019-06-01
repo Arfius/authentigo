@@ -61,14 +61,14 @@ authentigo.settings(authsetting);
 //3 . Pass the express app, the router and an array of mongoose schema to authentigo.
 authentigo.init(express,router)
 ```
-##Role Manager
+## Role Manager
 How work the role manager
 
 ## Use Check Permission external to library
 Use  req.authentigo_external="true";
 
 
-##ReST endpoints 
+## ReST endpoints 
 ### [/url_prefix]/login
 * **Method** : POST
 * **Request Params** : `{username:"email@domain.it" , password:"mysecret1234"}` 
