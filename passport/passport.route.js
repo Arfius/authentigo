@@ -5,6 +5,32 @@
 var registration= require('../registration/registration');
 var debug= require('debug')('Authentigo:passport.route');
 var code= require('../config/code');
+var sendNotifyLoginMail = require("../mailer/local.mailer").sendNotifyLoginMail
+
+var isAlarmOn = function(){
+    let today = new Date();
+    
+    if(today.getDay() == 6 || today.getDay() == 0)
+        return true; 
+    
+    let now_minute = new Date().getHours() + ( new Date().getMinutes()/100); 
+    let upper = parseFloat(process.env.authentigo_notify_login_h_upper);
+    let lower = parseFloat(process.env.authentigo_notify_login_h_lower);
+
+    if(now_minute < lower  || now_minute >upper )
+        return true;
+}
+
+var notifyAccess = function(user){
+    if(process.env.authentigo_notify_login_enabled){
+        if(isAlarmOn()){
+            var titolo = "[Registrato Login] ["+ user.name + "]";
+            var corpo = " E' Registrato un login da parte dell'utente:"+ user.name +" @ "+new Date().toISOString();
+            sendNotifyLoginMail(process.env.authentigo_notify_login_email,titolo,corpo);
+
+        }
+    }
+}
 
 module.exports = function(app,passport)
 {
@@ -24,7 +50,7 @@ module.exports = function(app,passport)
             }
 
             req.logIn(user, function(err) {
-
+                notifyAccess(user)
                 if (err) {
                     debug.log("login-ok-but-error")
                     return next(err);

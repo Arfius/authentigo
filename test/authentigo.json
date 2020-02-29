@@ -1,6 +1,14 @@
 {
+  "notify_login":{
+    "enabled":true,
+    "h_upper":"18:30",
+    "h_lower":"9:00",
+    "all_day":"Sun-Sat",
+    "email":"boss@example.it"
+  },
   "mailer":
   {
+    "address":"abc@example.it",
     "host": "mail.itsapp.it",
     "port": 587,
     "auth": {

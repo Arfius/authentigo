@@ -32,7 +32,13 @@ describe("[Test Registrazione / Login Utenti]", function()
             {
                 done();
             });
+
+            mongoose.model('users').find({"username":"user@prova.it"},function(err,res){
+                console.log(res)
+            })
         })
+
+
     });
 
 
@@ -55,7 +61,7 @@ describe("[Test Registrazione / Login Utenti]", function()
          {
              if (err)
              {
-                console.log(err);
+                console.log("----------->",err);
                 throw err;
              }
              res.status.should.be.equal(200);

@@ -6,16 +6,32 @@ var mongoose = require('mongoose')
 var debug=require('debug')('Authentigo:local.mailer')
 
 var configMail= {
-    host: 'mail.itsapp.it',
-    port: 587,
+    host: process.env.mailer_host,
+    port: process.env.mailer_port,
     auth: {
-        user: "itsapp.it",
-        pass: "Rossellina2017"
+        user: process.env.mailer_auth_user,
+        pass: process.env.mailer_auth_pass
     },
     tls: {
-        rejectUnauthorized: false
+        rejectUnauthorized: process.env.mailer_tls_rejectUnauthorized
     }};
 
+    module.exports.sendNotifyLoginMail= function(to,titolo,corpo_email)
+    {
+        debug('sendNotifyLoginMail')
+        var transporter = nodemailer.createTransport(configMail);
+        // setup email data with unicode symbols
+        var mailOptions = {
+            from: process.env.mailer_address, // sender address
+            to: to,
+            subject: titolo, // Subject line
+            text: "corpo_email", // plain text body
+            html: corpo_email // html body
+        };
+    
+        return transporter.sendMail(mailOptions);
+    
+    }
 
 module.exports.sendRegistrationMail= function(to,link)
 {

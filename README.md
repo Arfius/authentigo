@@ -27,6 +27,13 @@ var router = express.Router()
 ...
 
 var authsetting = {
+  "notify_login":{
+    "enabled":true,
+    "h_upper":"9.00", // use . as separator
+    "h_lower":"18.00",
+    "all_day":"Sun-Sat",
+    "email":"boss@example.it"
+  },
   "mailer":
   {
     "host": "mail.domain.it",
