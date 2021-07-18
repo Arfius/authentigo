@@ -19,13 +19,32 @@ var isAlarmOn = function(){
 
     if(now_minute < lower  || now_minute >upper )
         return true;
+
 }
 
 var notifyAccess = function(user){
     if(process.env.authentigo_notify_login_enabled){
         if(isAlarmOn()){
+            
+            var options=
+            {
+                timeZone: "Europe/Rome",
+                year: "numeric",
+                month: "numeric",
+                day: "2-digit",
+                hour:"2-digit",
+                minute:"2-digit",
+                second:"2-digit"
+            }
+
+            var data_login = new Date().toLocaleString("it-IT", options)
+            
+            var compo = data_login.split('/')
+            var data_ok = compo[1]+'/'+compo[0]+'/'+compo[2]
+
             var titolo = "[Registrato Login] ["+ user.name + "]";
-            var corpo = " E' Registrato un login da parte dell'utente:"+ user.name +" @ "+new Date().toISOString();
+            var corpo = "Nuovo Login da parte dell'utente:"+ user.name +" @ "+data_ok;
+            
             sendNotifyLoginMail(process.env.authentigo_notify_login_email,titolo,corpo);
 
         }
