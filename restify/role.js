@@ -14,7 +14,7 @@ module.exports.preMiddlewareRestify=function(req, _res,next)
     var url= req.url;
     var method= req.method;
 
-    if (req.user)
+    if (req.user && req.user.hasOwnProperty('_id'))
     {
         debug("["+req.user._id+"] checkPermission - Auth " +  req.user._id)
 
