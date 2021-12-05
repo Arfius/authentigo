@@ -22,7 +22,7 @@ var isAlarmOn = function(){
 
 }
 
-var notifyAccess = function(user){
+var notifyAccess = function(user, is_login){
     if(process.env.authentigo_notify_login_enabled){
         if(isAlarmOn()){
             
@@ -42,8 +42,13 @@ var notifyAccess = function(user){
             var compo = data_login.split('/')
             var data_ok = compo[1]+'/'+compo[0]+'/'+compo[2]
 
-            var titolo = "[Registrato Login] ["+ user.name + "]";
-            var corpo = "Nuovo Login da parte dell'utente:"+ user.name +" @ "+data_ok;
+            var titolo = "[Registrato Logout] ["+ user.name + "]";
+            var corpo = "L'utente:"+ user.name +" ha effettuato il logout il "+data_ok;
+
+            if (is_login){
+                titolo = "[Registrato Login] ["+ user.name + "]";
+                corpo = "Nuovo Login da parte dell'utente:"+ user.name +" @ "+data_ok;
+            }
             
             sendNotifyLoginMail(process.env.authentigo_notify_login_email,titolo,corpo);
 
@@ -69,7 +74,7 @@ module.exports = function(app,passport)
             }
 
             req.logIn(user, function(err) {
-                notifyAccess(user)
+                notifyAccess(user, true)
                 if (err) {
                     debug.log("login-ok-but-error")
                     return next(err);
@@ -96,6 +101,7 @@ module.exports = function(app,passport)
         res.clearCookie('connect.sid');
         req.logout();
         req.session=null;
+        notifyAccess(user, false)
         res.status(200).json(code[200]);
     });
 
