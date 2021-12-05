@@ -95,13 +95,14 @@ module.exports = function(app,passport)
 
     app.get(process.env.authentigo_url_prefix+'/logout', function(req, res)
     {
+        console.log(req)
         debug("logout-user");
         req.logOut();
         req.session.destroy();
         res.clearCookie('connect.sid');
         req.logout();
         req.session=null;
-        notifyAccess(user, false)
+        // notifyAccess(user, false)
         res.status(200).json(code[200]);
     });
 
