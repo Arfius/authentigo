@@ -42,11 +42,11 @@ var notifyAccess = function(user, is_login){
             var compo = data_login.split('/')
             var data_ok = compo[1]+'/'+compo[0]+'/'+compo[2]
 
-            var titolo = "[Registrato Logout] ["+ user.name + "]";
+            var titolo = "[Logout] ["+ user.name + "]";
             var corpo = "L'utente:"+ user.name +" ha effettuato il logout il "+data_ok;
 
-            if (is_login){
-                titolo = "[Registrato Login] ["+ user.name + "]";
+            if (is_login==true){
+                titolo = "[Login] ["+ user.name + "]";
                 corpo = "Nuovo Login da parte dell'utente:"+ user.name +" @ "+data_ok;
             }
             
@@ -96,12 +96,13 @@ module.exports = function(app,passport)
     app.get(process.env.authentigo_url_prefix+'/logout', function(req, res)
     {
         debug("logout-user");
+        var user = req.user
         req.logOut();
         req.session.destroy();
         res.clearCookie('connect.sid');
         req.logout();
         req.session=null;
-        notifyAccess(req.user, false)
+        notifyAccess(user, false)
         res.status(200).json(code[200]);
     });
 
