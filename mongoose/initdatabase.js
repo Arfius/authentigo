@@ -7,8 +7,8 @@ var mongoose = require('./mongoconfig').aut_mongoose;
 exports.init= function()
 {
     var env = process.env.NODE_ENV
-    debug('Mode: '+env);
-    debug('Prefix: '+process.env.authentigo_prefix_db)
+    debug('Mode: ',env);
+    debug('Prefix: ',process.env.authentigo_prefix_db)
 
     if(env == 'production')
         mongoose.connect('mongodb://localhost/'+process.env.authentigo_prefix_db+'-Authentigo');
