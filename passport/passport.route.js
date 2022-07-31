@@ -101,12 +101,50 @@ module.exports = function(app,passport)
 
     app.get(process.env.authentigo_url_prefix+'/check',function(req,res)
     {
-        if (!req.isAuthenticated || !req.isAuthenticated()) {
+            
+        if (!req.isAuthenticated || !req.isAuthenticated()) {            
             debug("check - not auth")
             res.status(401).send(code[401])
         } else {
-            debug("check - auth ok")
-            res.status(200).send(code[200])
+            var use = req.sessionID;
+            var uid = req.session.passport.user;
+
+            debug(`Current - auth ok Session:${use} - User:${uid}`)            
+            if (process.env.authentigo_use_single_session === "false"){
+                res.status(200).send(code[200])
+                return
+            }
+            
+            var conflict = false;
+            var session_per_user = []
+
+            for (var key in req.sessionStore.sessions) {
+                var curr_session = JSON.parse(req.sessionStore.sessions[key])
+                debug(`checking - Session:${key}`)            
+
+                if( curr_session.passport!= undefined && curr_session.passport.user == uid){
+                    session_per_user.push(key)
+                }
+            }
+
+            if(session_per_user.length>1){
+                conflict= true;
+
+                session_per_user.forEach(
+                    e=>{
+                        req.sessionStore.destroy(e, function(data,error){
+                        });
+                    }
+                )
+
+                req.session.destroy();
+            }
+
+            if (conflict){
+                res.status(409).send(code[409])
+            }else{
+                res.status(200).send(code[200])
+            }
         }
     });
 
